@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Wisconsin DOR AI assistant case study by Isaac Tsai." />
+    <title>Wisconsin DOR | Isaac Tsai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="inner-page">
+    <a class="skip-link" href="#case-content">Skip to content</a>
+    <header class="site-header">
+      <a class="monogram" href="./index.html" aria-label="Isaac Tsai, home">IT</a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
+        <span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="./index.html">Home</a>
+        <a class="active" href="./work.html">Works</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="case-hero" aria-labelledby="case-title">
+        <p class="page-label">Case study · 02</p>
+        <h1 class="case-title" id="case-title">Wisconsin DOR</h1>
+        <p class="case-subtitle">
+          A source-grounded property tax assistant that makes a dense legal and
+          policy corpus easier to navigate.
+        </p>
+        <dl class="case-meta">
+          <div><dt>Role</dt><dd>Software Engineering Intern</dd></div>
+          <div><dt>Context</dt><dd>AWS Cal Poly DxHub</dd></div>
+          <div><dt>Stack</dt><dd>Bedrock, Neptune, Lambda, Next.js</dd></div>
+          <div><dt>Source</dt><dd><a href="https://github.com/cal-poly-dxhub/wisconsin-dor-polished" target="_blank" rel="noreferrer">Open-source repository ↗</a></dd></div>
+        </dl>
+      </section>
+
+      <div class="case-cover">
+        <div class="project-visual dor-visual">
+          <span class="visual-label">Wisconsin<br />DOR</span>
+          <span class="visual-query">How is property assessed?</span>
+          <span class="visual-source">Wis. Stat. § 70.32</span>
+        </div>
+      </div>
+
+      <div class="case-body" id="case-content">
+        <section class="case-section">
+          <h2>The challenge</h2>
+          <div class="case-prose">
+            <p>
+              Wisconsin property tax guidance spans statutes, administrative
+              rules, case law, assessment manuals, government publications, and
+              professional standards. The hard part is not generating an
+              answer. It is finding the right authority, preserving legal
+              context, and showing exactly where the answer came from.
+            </p>
+            <p>
+              The prototype lets users ask natural-language questions and
+              receive streamed answers grounded in public, directly linked
+              sources.
+            </p>
+          </div>
+        </section>
+
+        <blockquote class="case-quote">
+          Retrieval quality is a product feature, not a backend detail.
+        </blockquote>
+
+        <section class="case-section">
+          <h2>My contribution</h2>
+          <div class="case-prose">
+            <p>
+              As an engineer on the DxHub team, I worked across the retrieval
+              system, ingestion pipeline, cloud infrastructure, and end-user
+              experience. My contribution centered on making the system’s
+              evidence more accurate, observable, and useful.
+            </p>
+            <ul>
+              <li>Developed authority-aware GraphRAG retrieval and structural document browsing.</li>
+              <li>Built source-linked citation cards and page-level citation navigation.</li>
+              <li>Improved statute, administrative rule, and WPAM chunking quality.</li>
+              <li>Added retrieval traces and an admin activity surface for evaluation.</li>
+              <li>Consolidated the ingestion workflow into managed Fargate phases.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <h2>System design</h2>
+          <div class="case-prose">
+            <p>
+              An authenticated question becomes an EventBridge event. A Lambda
+              then runs a Claude tool-use loop across FAQ search and Neptune
+              graph tools. The agent can perform vector search, traverse legal
+              relationships, inspect document structure, and determine when it
+              has enough evidence before streaming an answer and its sources
+              over WebSocket.
+            </p>
+            <div class="architecture" aria-label="Wisconsin DOR query flow">
+              <span>Next.js + Cognito</span>
+              <span>EventBridge + Lambda</span>
+              <span>Claude tool loop</span>
+              <span>Neptune knowledge graph</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <h2>Authority as data</h2>
+          <div class="case-prose">
+            <p>
+              The knowledge graph models a nine-level authority hierarchy, from
+              constitutional and statutory sources through case law,
+              administrative rules, manuals, FAQs, and standards. Relationships
+              such as <em>cites</em>, <em>implements</em>,
+              <em>supersedes</em>, and <em>conflicts with</em> help retrieval
+              preserve context that a flat vector index would lose.
+            </p>
+          </div>
+        </section>
+
+        <section class="case-section">
+          <h2>Result</h2>
+          <div class="case-prose">
+            <p>
+              The resulting open-source prototype connects a conversational
+              interface to an inspectable evidence trail. Users can follow
+              citations to public sources, while the team can investigate
+              retrieval behavior, feedback, and document quality without
+              treating the model as a black box.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <a class="next-project" href="./hunt.html">
+        <div><p class="section-kicker">Next project · 03</p><h2>Hunt Dashboard</h2></div>
+        <span aria-hidden="true">↗</span>
+      </a>
+      <a class="contact-cta" href="./contact.html">
+        <p class="section-kicker">Have a project in mind?</p>
+        <h2>Let’s build with intention.</h2>
+        <span aria-hidden="true">↗</span>
+      </a>
+    </main>
+    <script src="./script.js"></script>
+  </body>
+</html>

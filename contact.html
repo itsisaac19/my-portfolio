@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Contact Isaac Tsai about software, product, and collaboration."
+    />
+    <title>Contact | Isaac Tsai</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body class="inner-page">
+    <a class="skip-link" href="#contact-form">Skip to contact form</a>
+    <header class="site-header">
+      <a class="monogram" href="./index.html" aria-label="Isaac Tsai, home">IT</a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="site-nav"
+      >
+        <span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="./index.html">Home</a>
+        <a href="./work.html">Works</a>
+        <a href="./about.html">About</a>
+        <a class="active" href="./contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <main class="contact-page">
+      <section class="contact-page-intro" aria-labelledby="contact-title">
+        <p class="page-label">Contact · 01</p>
+        <h1 class="page-heading" id="contact-title">
+          Let’s build with intention.
+        </h1>
+        <div class="contact-intro-copy">
+          <p>
+            Have a project, opportunity, or interesting problem in mind? Tell
+            me a little about it.
+          </p>
+          <a class="email-cta" href="mailto:itsai01@calpoly.edu">
+            <span>Prefer email? Write to me directly</span>
+            <strong>itsai01@calpoly.edu</strong>
+            <b aria-hidden="true">↗</b>
+          </a>
+        </div>
+      </section>
+
+      <section class="contact-form-section" aria-label="Send a message">
+        <form
+          class="contact-form"
+          id="contact-form"
+          action="mailto:itsai01@calpoly.edu"
+          method="post"
+          enctype="text/plain"
+        >
+          <div class="form-field">
+            <label for="name">Your name</label>
+            <input id="name" name="Name" type="text" autocomplete="name" required />
+          </div>
+          <div class="form-field">
+            <label for="email">Email address</label>
+            <input id="email" name="Email" type="email" autocomplete="email" required />
+          </div>
+          <div class="form-field form-field-wide">
+            <label for="subject">What would you like to discuss?</label>
+            <input id="subject" name="Subject" type="text" required />
+          </div>
+          <div class="form-field form-field-wide">
+            <label for="message">Tell me about it</label>
+            <textarea id="message" name="Message" rows="6" required></textarea>
+          </div>
+          <div class="form-submit">
+            <p>Submitting opens your email client with these details.</p>
+            <button type="submit">Send message <span>↗</span></button>
+          </div>
+        </form>
+
+        <aside class="contact-aside">
+          <p class="section-kicker">Elsewhere · 02</p>
+          <a href="https://www.linkedin.com/in/isaac-m-tsai" target="_blank" rel="noreferrer">
+            LinkedIn <span>↗</span>
+          </a>
+          <a href="https://github.com/itsisaac19" target="_blank" rel="noreferrer">
+            GitHub <span>↗</span>
+          </a>
+          <p>Based in San Luis Obispo, California.</p>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Isaac Tsai</span>
+      <span>San Luis Obispo, CA</span>
+      <span>© 2026</span>
+    </footer>
+    <script src="./script.js"></script>
+  </body>
+</html>
