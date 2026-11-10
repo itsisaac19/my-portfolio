@@ -1,138 +1,130 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Urbane Weather case study by Isaac Tsai." />
-    <title>Urbane Weather | Isaac Tsai</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500&family=DM+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
+    <!-- @include head -->
+    <title>Urbane Weather — Isaac Tsai</title>
+    <meta
+      name="description"
+      content="Urbane Weather: a granular, deliberately calm weather product pairing animated NOAA radar with a customizable dashboard. Designed and built by Isaac Tsai."
     />
-    <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="inner-page">
-    <a class="skip-link" href="#case-content">Skip to content</a>
-    <header class="site-header">
-      <a class="monogram" href="./index.html" aria-label="Isaac Tsai, home">IT</a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
-        <span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a href="./index.html">Home</a>
-        <a class="active" href="./work.html">Works</a>
-        <a href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
-      </nav>
-    </header>
+  <body>
+    <!-- @include chrome -->
 
-    <main>
-      <section class="case-hero" aria-labelledby="case-title">
-        <p class="page-label">Case study · 01</p>
-        <h1 class="case-title" id="case-title">Urbane Weather</h1>
-        <p class="case-subtitle">
-          Weather reporting delivered with purpose and cleanliness, from
-          city-scale forecasts to animated NOAA radar.
-        </p>
-        <dl class="case-meta">
-          <div><dt>Role</dt><dd>Designer & Developer</dd></div>
-          <div><dt>Context</dt><dd>Independent project</dd></div>
-          <div><dt>Stack</dt><dd>Next.js, Mapbox GL, Chart.js</dd></div>
-          <div><dt>Links</dt><dd><a href="https://urbaneweather.vercel.app" target="_blank" rel="noreferrer">Live site ↗</a> · <a href="https://github.com/itsisaac19/urbane" target="_blank" rel="noreferrer">GitHub ↗</a></dd></div>
-        </dl>
+    <main id="main">
+      <section class="cs-hero" aria-labelledby="cs-title">
+        <div class="cs-crumb mono">
+          <a href="./index.html#work" class="dim">← Index</a>
+          <span>Case 03 / 04</span>
+          <a href="https://urbaneweather.vercel.app" class="sig" target="_blank" rel="noopener">● Live ↗</a>
+        </div>
+        <h1 class="display cs-title" id="cs-title" data-split>Urbane<br /><span class="sig">Weather</span></h1>
+        <div class="grid cs-sub">
+          <p class="lede" data-reveal>
+            Weather reporting with intent: everything from city-scale forecasts to animated NOAA radar, with dense data
+            kept quiet.
+          </p>
+          <dl class="cs-meta mono" data-reveal style="--d: 0.1s">
+            <div><dt class="dim">Role</dt><dd>Designer &amp; developer</dd></div>
+            <div><dt class="dim">Context</dt><dd>Independent product</dd></div>
+            <div><dt class="dim">Stack</dt><dd>Next.js · Mapbox GL · Chart.js · Vercel Edge</dd></div>
+            <div><dt class="dim">Data</dt><dd>NOAA WMS radar</dd></div>
+            <div>
+              <dt class="dim">Live</dt>
+              <dd><a href="https://urbaneweather.vercel.app" target="_blank" rel="noopener">urbaneweather.vercel.app ↗</a></dd>
+            </div>
+            <div>
+              <dt class="dim">Source</dt>
+              <dd><a href="https://github.com/itsisaac19/urbane" target="_blank" rel="noopener">GitHub ↗</a></dd>
+            </div>
+          </dl>
+        </div>
+        <div class="cs-plate crop" data-unclip>
+          <div data-parallax="0.08" style="height: 100%">
+            <img src="./img/urbane/landing.jpg" alt="Urbane Weather location search interface" style="width: 100%; height: 100%; object-fit: cover" />
+          </div>
+        </div>
       </section>
 
-      <figure class="case-cover">
-        <img src="./assets/urbane/landing.jpg" alt="Urbane Weather landing page" />
-      </figure>
-
-      <div class="case-body" id="case-content">
-        <section class="case-section">
-          <h2>The problem</h2>
-          <div class="case-prose">
-            <p>
-              Most weather products make users choose between a quick,
-              simplified forecast and a dense professional tool. Urbane explores
-              a third path: preserve granular data while making it calm,
-              legible, and personal.
-            </p>
-            <p>
-              The product needed to move smoothly between location discovery,
-              current conditions, long-range charts, and a data-heavy radar
-              experience without feeling like four unrelated applications.
-            </p>
-          </div>
-        </section>
-
-        <blockquote class="case-quote">
-          Granular weather data can still feel quiet.
-        </blockquote>
-
-        <section class="case-section">
-          <h2>My contribution</h2>
-          <div class="case-prose">
-            <p>
-              I designed and developed the product end to end: visual system,
-              responsive dashboard, weather visualization, Mapbox integration,
-              radar controls, and deployment.
-            </p>
-            <ul>
-              <li>Built a customizable CSS Grid dashboard for pinned weather tiles.</li>
-              <li>Connected NOAA WMS radar data to animated Mapbox tile layers.</li>
-              <li>Created multi-range Chart.js visualizations for forecast trends.</li>
-              <li>Generated dynamic social metadata with Vercel edge functions.</li>
-            </ul>
-          </div>
-        </section>
-
-        <div class="case-gallery">
-          <img src="./assets/urbane/dashboard.jpg" alt="Urbane customizable weather dashboard" loading="lazy" />
-          <img src="./assets/urbane/radar.jpg" alt="Urbane animated weather radar interface" loading="lazy" />
-        </div>
-
-        <section class="case-section">
-          <h2>Radar system</h2>
-          <div class="case-prose">
-            <p>
-              The radar queries NOAA’s GetCapabilities service, parses the XML
-              response, and transforms temporal datasets into Mapbox tile
-              layers. Custom controls let users scrub through time or play the
-              sequence as an animation while layers are selectively rendered.
-            </p>
-            <div class="architecture" aria-label="Radar data flow">
-              <span>NOAA WMS</span>
-              <span>XML parsing</span>
-              <span>Temporal tile layers</span>
-              <span>Mapbox playback</span>
+      <section class="chapter" aria-labelledby="c1">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">01</span><span id="c1">The problem</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Granular data can still feel quiet.</h2>
+            <div class="body" data-reveal>
+              <p>
+                Most weather products make you pick between a quick, simplified forecast and a dense professional tool.
+                Urbane tries a third path: keep the granular data, but make it calm, legible and personal.
+              </p>
+              <p>
+                It had to move between location search, current conditions, long-range charts and a data-heavy radar
+                without feeling like four separate apps.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="case-section">
-          <h2>Reflection</h2>
-          <div class="case-prose">
-            <p>
-              Urbane became an exercise in balancing information density with
-              restraint. The strongest interactions are not decorative; they
-              give users control over scale, timeframe, and priority while the
-              visual system stays out of the way.
-            </p>
+      <section class="wrap" aria-label="Screens">
+        <div class="shots">
+          <figure data-reveal>
+            <img src="./img/urbane/dashboard.jpg" alt="Urbane dashboard with pinned weather tiles" loading="lazy" />
+            <figcaption class="mono dim">Fig. 02 — Pinned-tile dashboard, CSS Grid</figcaption>
+          </figure>
+          <figure data-reveal style="--d: 0.12s">
+            <img src="./img/urbane/radar.jpg" alt="Urbane animated NOAA radar view" loading="lazy" />
+            <figcaption class="mono dim">Fig. 03 — Temporal radar playback</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="c2">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">02</span><span id="c2">Radar system</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Turning NOAA XML into scrubbable time.</h2>
+            <div class="body" data-reveal>
+              <p>
+                The radar queries NOAA’s GetCapabilities service, parses the XML response, and turns temporal datasets
+                into Mapbox tile layers. Custom controls let you scrub through time or play the sequence as an animation,
+                and only the layers in use get rendered.
+              </p>
+            </div>
+            <ol class="pipeline" style="--steps: 4" data-reveal>
+              <li><span class="mono dim">01</span><b>NOAA WMS GetCapabilities</b></li>
+              <li><span class="mono dim">02</span><b>XML → temporal datasets</b></li>
+              <li><span class="mono dim">03</span><b>Mapbox tile layers</b></li>
+              <li><span class="mono dim">04</span><b>Scrub &amp; playback controls</b></li>
+            </ol>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <a class="next-project" href="./wisconsin.html">
-        <div><p class="section-kicker">Next project · 02</p><h2>Wisconsin DOR</h2></div>
-        <span aria-hidden="true">↗</span>
-      </a>
-      <a class="contact-cta" href="./contact.html">
-        <p class="section-kicker">Have a project in mind?</p>
-        <h2>Let’s build with intention.</h2>
-        <span aria-hidden="true">↗</span>
+      <section class="chapter" aria-labelledby="c3">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">03</span><span id="c3">My part</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>End to end, pixels to deployment.</h2>
+            <ol class="ledger" data-reveal>
+              <li><div><strong>Visual system.</strong> <span>A restrained type and color system that lets the data lead.</span></div></li>
+              <li><div><strong>Customizable dashboard.</strong> <span>Pinned weather tiles on CSS Grid.</span></div></li>
+              <li><div><strong>Forecast charts.</strong> <span>Multi-range Chart.js views of forecast trends.</span></div></li>
+              <li><div><strong>Social metadata.</strong> <span>Dynamic Open Graph images generated with Vercel edge functions.</span></div></li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="pull" aria-label="Reflection">
+        <blockquote data-split>The best interactions <span class="sig">aren’t decoration.</span></blockquote>
+      </section>
+
+      <a class="next" href="./hunt.html" data-cursor="Next ↗">
+        <span class="next-row mono"><span class="dim">Next case — 04</span><span>↗</span></span>
+        <span class="next-title">Hunt Dashboard</span>
       </a>
     </main>
-    <script src="./script.js"></script>
+
+    <!-- @include footer -->
   </body>
 </html>

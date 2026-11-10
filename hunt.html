@@ -1,161 +1,107 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Hunt Admin Dashboard case study by Isaac Tsai." />
-    <title>Hunt Admin Dashboard | Isaac Tsai</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500&family=DM+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
+    <!-- @include head -->
+    <title>Hunt Admin Dashboard — Isaac Tsai</title>
+    <meta
+      name="description"
+      content="A real-time operations dashboard for a campus-wide hunt: live team maps, checkpoint photos and game controls on AWS."
     />
-    <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="inner-page">
-    <a class="skip-link" href="#case-content">Skip to content</a>
-    <header class="site-header">
-      <a class="monogram" href="./index.html" aria-label="Isaac Tsai, home">IT</a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
-        <span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a href="./index.html">Home</a>
-        <a class="active" href="./work.html">Works</a>
-        <a href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
-      </nav>
-    </header>
+  <body>
+    <!-- @include chrome -->
 
-    <main>
-      <section class="case-hero" aria-labelledby="case-title">
-        <p class="page-label">Case study · 03</p>
-        <h1 class="case-title" id="case-title">Hunt Admin Dashboard</h1>
-        <p class="case-subtitle">
-          A live operations surface for following teams, checkpoints, photos,
-          and the pulse of a campus-wide scavenger hunt.
-        </p>
-        <dl class="case-meta">
-          <div><dt>Role</dt><dd>Full-stack Developer</dd></div>
-          <div><dt>Context</dt><dd>AWS Cal Poly DxHub</dd></div>
-          <div><dt>Stack</dt><dd>React, Mapbox GL, AWS CDK</dd></div>
-          <div><dt>Source</dt><dd><a href="https://github.com/cal-poly-dxhub/hunt-admin-dashboard" target="_blank" rel="noreferrer">Open-source repository ↗</a></dd></div>
-        </dl>
+    <main id="main">
+      <section class="cs-hero" aria-labelledby="cs-title">
+        <div class="cs-crumb mono">
+          <a href="./index.html#work" class="dim">← Index</a>
+          <span>Case 04 / 04</span>
+          <span class="dim">Full-stack</span>
+        </div>
+        <h1 class="display cs-title" id="cs-title" data-split>Hunt<br />Dash<span class="sig">●</span></h1>
+        <div class="grid cs-sub">
+          <p class="lede" data-reveal>
+            A live operations view of a campus-wide hunt: teams, checkpoints, photos and the game clock, all on one screen.
+          </p>
+          <dl class="cs-meta mono" data-reveal style="--d: 0.1s">
+            <div><dt class="dim">Role</dt><dd>Full-stack developer</dd></div>
+            <div><dt class="dim">Context</dt><dd>AWS Cal Poly DxHub</dd></div>
+            <div><dt class="dim">Stack</dt><dd>React · Mapbox GL · Lambda · DynamoDB · CDK</dd></div>
+            <div>
+              <dt class="dim">Source</dt>
+              <dd><a href="https://github.com/cal-poly-dxhub/hunt-admin-dashboard" target="_blank" rel="noopener">GitHub ↗</a></dd>
+            </div>
+          </dl>
+        </div>
+        <div class="cs-plate crop" data-unclip>
+          <div data-parallax="0.06" style="height: 100%"><!-- @include plate-hunt --></div>
+        </div>
       </section>
 
-      <div class="case-cover">
-        <div class="project-visual hunt-visual">
-          <span class="map-route route-a"></span>
-          <span class="map-route route-b"></span>
-          <span class="map-point point-a"></span>
-          <span class="map-point point-b"></span>
-          <span class="map-point point-c"></span>
-          <span class="hunt-stat"><b>08</b> teams live</span>
-        </div>
-      </div>
-
-      <div class="case-body" id="case-content">
-        <section class="case-section">
-          <h2>The challenge</h2>
-          <div class="case-prose">
-            <p>
-              During a campus hunt, administrators need to understand where
-              teams are, which checkpoints they have completed, when photos
-              arrive, and whether the game clock is running, all while the event
-              continues moving.
-            </p>
-            <p>
-              The dashboard turns several streams of backend data into one
-              shared operational view without competing with the system that
-              runs the participant experience.
-            </p>
-          </div>
-        </section>
-
-        <blockquote class="case-quote">
-          Live data matters only when people can act on it.
-        </blockquote>
-
-        <section class="case-section">
-          <h2>My contribution</h2>
-          <div class="case-prose">
-            <p>
-              I built the dashboard as a full-stack AWS application, from the
-              Mapbox interface and polling hooks to Lambda routes, CDK
-              infrastructure, and the shared DynamoDB integration.
-            </p>
-            <ul>
-              <li>Created live team maps, trails, progress views, timers, and checkpoint notifications.</li>
-              <li>Implemented event-driven photo notifications from S3 through DynamoDB.</li>
-              <li>Added resilient polling with exponential backoff and scoped event handling.</li>
-              <li>Designed an additive data model that does not mutate backend-owned game records.</li>
-              <li>Separated viewer access from privileged game-control actions.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="case-section">
-          <h2>Architecture</h2>
-          <div class="case-prose">
-            <p>
-              CloudFront serves the React application and routes API requests to
-              Lambda through API Gateway. The dashboard reads game, team,
-              progress, and coordinate data from a shared DynamoDB table. When a
-              checkpoint photo lands in S3, an event-driven Lambda records a
-              checkpoint event that appears in the dashboard feed.
-            </p>
-            <div class="architecture" aria-label="Hunt dashboard architecture">
-              <span>React + Mapbox</span>
-              <span>CloudFront + API Gateway</span>
-              <span>Lambda routes</span>
-              <span>DynamoDB + S3</span>
+      <section class="chapter" aria-labelledby="c1">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">01</span><span id="c1">The problem</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Live data only matters if people can act on it.</h2>
+            <div class="body" data-reveal>
+              <p>
+                Mid-event, admins need to know where every team is, which checkpoints they’ve cleared, when photos come in
+                and whether the clock is running, all while the game keeps going.
+              </p>
+              <p>
+                The dashboard combines several backend streams into one shared view, without competing with the system that
+                runs the participant experience.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="case-section">
-          <h2>A safe boundary</h2>
-          <div class="case-prose">
-            <p>
-              The participant backend and dashboard share a table, but they do
-              not share ownership. The dashboard observes backend records and
-              writes only two additive item types: checkpoint events and
-              dashboard controls. Start, pause, and reset state live on a
-              dashboard-owned item that is merged at read time.
-            </p>
-            <p>
-              This boundary prevents an operational tool from accidentally
-              becoming a second writer to core game state while still enabling
-              reliable controls.
-            </p>
+      <section class="chapter" aria-labelledby="c2">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">02</span><span id="c2">System</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>A safe boundary on a shared table.</h2>
+            <div class="body" data-reveal>
+              <p>
+                The participant backend and the dashboard share a DynamoDB table, but not ownership of it. The dashboard
+                only reads backend records and writes two additive item types of its own: checkpoint events and dashboard
+                controls. Start, pause and reset live on a dashboard-owned item that gets merged in at read time, so an
+                operations tool can never become a second writer to core game state.
+              </p>
+            </div>
+            <ol class="pipeline" style="--steps: 4" data-reveal>
+              <li><span class="mono dim">01</span><b>React + Mapbox on CloudFront</b></li>
+              <li><span class="mono dim">02</span><b>API Gateway → Lambda routes</b></li>
+              <li><span class="mono dim">03</span><b>Shared DynamoDB, additive writes</b></li>
+              <li><span class="mono dim">04</span><b>S3 photo → event-driven Lambda</b></li>
+            </ol>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="case-section">
-          <h2>Result</h2>
-          <div class="case-prose">
-            <p>
-              Administrators get a single view of location, completion, time,
-              and checkpoint evidence. The interface scales team colors with a
-              golden-angle system, degrades polling safely when services are
-              unavailable, and keeps sensitive controls behind a separate
-              server-validated secret.
-            </p>
+      <section class="chapter" aria-labelledby="c3">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">03</span><span id="c3">My part</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Map, routes, infra, all of it.</h2>
+            <ol class="ledger" data-reveal>
+              <li><div><strong>Live map.</strong> <span>Team positions, trails, progress views, timers and checkpoint notifications.</span></div></li>
+              <li><div><strong>Event-driven photos.</strong> <span>Checkpoint photos flow from S3 through Lambda into the dashboard feed.</span></div></li>
+              <li><div><strong>Resilient polling.</strong> <span>Exponential backoff and scoped event handling, so the dashboard degrades safely when services go down.</span></div></li>
+              <li><div><strong>Separated privileges.</strong> <span>Viewer access is split from game-control actions, which sit behind a separate secret validated on the server.</span></div></li>
+              <li><div><strong>Golden-angle team colors.</strong> <span>Team colors are spaced by the golden angle, so they stay distinct however many teams join.</span></div></li>
+            </ol>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <a class="next-project" href="./urbane.html">
-        <div><p class="section-kicker">Back to project · 01</p><h2>Urbane Weather</h2></div>
-        <span aria-hidden="true">↗</span>
-      </a>
-      <a class="contact-cta" href="./contact.html">
-        <p class="section-kicker">Have a project in mind?</p>
-        <h2>Let’s build with intention.</h2>
-        <span aria-hidden="true">↗</span>
+      <a class="next" href="./sac-county.html" data-cursor="Next ↗">
+        <span class="next-row mono"><span class="dim">Back to — 01</span><span>↗</span></span>
+        <span class="next-title">Sac County DA</span>
       </a>
     </main>
-    <script src="./script.js"></script>
+
+    <!-- @include footer -->
   </body>
 </html>

@@ -1,173 +1,167 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- @include head -->
+    <title>Isaac Tsai — Software Engineer</title>
     <meta
       name="description"
-      content="Isaac Tsai, designer and developer portfolio."
+      content="Isaac Tsai is a software engineer at Cal Poly building agentic AI systems for the public sector: GraphRAG, AWS infrastructure and interfaces that show their work."
     />
-    <title>Isaac Tsai | Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500&family=DM+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to content</a>
-    <main>
+    <!-- @include chrome -->
+
+    <main id="main">
+      <!-- HERO -->
       <section class="hero" aria-labelledby="hero-title">
-        <header class="site-header">
-          <a class="monogram" href="./index.html" aria-label="Isaac Tsai, home">IT</a>
+        <div class="grid hero-top mono">
+          <span data-hero-fade>(Index — 26)<br /><span class="dim">Portfolio / Selected work</span></span>
+          <span data-hero-fade>Software engineer<br /><span class="dim">AI systems · Cloud · Interface</span></span>
+          <span data-hero-fade>Now<br /><span class="dim">Sac County DA — GovCloud RAG</span></span>
+          <span data-hero-fade>San Luis Obispo, CA<br /><span class="dim" data-clock>--:--:-- PT</span></span>
+        </div>
 
-          <button
-            class="menu-toggle"
-            type="button"
-            aria-label="Open navigation"
-            aria-expanded="false"
-            aria-controls="site-nav"
-          >
-            <span></span>
-            <span></span>
-          </button>
+        <h1 class="hero-name" id="hero-title">
+          <span class="sr-only">Isaac Tsai</span>
+          <span class="row row--a" aria-hidden="true">
+            <span class="display" data-hero-line>Isaac</span>
+            <span class="hero-portrait crop" data-hero-block data-dither-host data-cursor="Hi ✦">
+              <canvas data-dither="./img/headshot.jpg" data-cols="132" aria-label="Portrait of Isaac Tsai" role="img"></canvas>
+              <span class="tag mono">IT—001</span>
+            </span>
+          </span>
+          <span class="row" aria-hidden="true">
+            <span class="hero-square" data-hero-block></span>
+            <span class="display" data-hero-line>Tsai</span>
+          </span>
+        </h1>
 
-          <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-            <a class="active" href="#home">Home</a>
-            <a href="./work.html">Works</a>
-            <a href="./about.html">About</a>
-            <a href="./contact.html">Contact</a>
-          </nav>
-        </header>
+        <div class="grid hero-foot">
+          <p class="lede" data-hero-fade>
+            I build <em>AI systems that show their work</em> — agentic retrieval, cloud infrastructure, and the interfaces
+            people actually trust.
+          </p>
+          <p class="mono hero-coords dim" data-hero-fade>35.2828° N<br />120.6596° W</p>
+          <a class="mono scroll-cue" href="#work" data-hero-fade>Scroll <i></i></a>
+        </div>
+      </section>
 
-        <div class="portrait-wrap" aria-label="Portrait of Isaac Tsai">
-          <div class="portrait-fallback" aria-hidden="true">
-            <span>Portrait</span>
+      <!-- MARQUEE -->
+      <div class="marquee" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-item">Agentic RAG</span>
+          <span class="marquee-item">Knowledge graphs</span>
+          <span class="marquee-item">AWS CDK</span>
+          <span class="marquee-item">Amazon Bedrock</span>
+          <span class="marquee-item">GovCloud</span>
+          <span class="marquee-item">Evals</span>
+          <span class="marquee-item">Interfaces</span>
+        </div>
+      </div>
+
+      <!-- WORK -->
+      <section class="section wrap" id="work" aria-labelledby="work-title">
+        <div class="section-head mono">
+          <span id="work-title">(Selected work)</span>
+          <span class="dim">04 projects · 2025 — 26</span>
+        </div>
+
+        <h2 class="h2" data-split style="margin-bottom: clamp(40px, 6vw, 96px); max-width: 14ch">
+          Systems for problems with <span class="sig">real stakes.</span>
+        </h2>
+
+        <ol class="work-list" data-preview-list>
+          <li class="work-row">
+            <a href="./sac-county.html" data-preview-key="sac" data-cursor="View ↗">
+              <span class="work-num mono dim">01</span>
+              <span class="work-title">Sac County DA</span>
+              <span class="work-kind mono">Case Chat — GovCloud agentic RAG<br /><span class="dim">AWS Cal Poly DxHub</span></span>
+              <span class="work-year mono">Nov 2026 <span class="arrow">↗</span></span>
+            </a>
+          </li>
+          <li class="work-row">
+            <a href="./wisconsin.html" data-preview-key="wis" data-cursor="View ↗">
+              <span class="work-num mono dim">02</span>
+              <span class="work-title">Wisconsin DOR</span>
+              <span class="work-kind mono">GraphRAG property-tax assistant<br /><span class="dim">AWS Cal Poly DxHub</span></span>
+              <span class="work-year mono">Apr—Oct 2026 <span class="arrow">↗</span></span>
+            </a>
+          </li>
+          <li class="work-row">
+            <a href="./urbane.html" data-preview-key="urb" data-cursor="View ↗">
+              <span class="work-num mono dim">03</span>
+              <span class="work-title">Urbane Weather</span>
+              <span class="work-kind mono">Radar &amp; forecast product<br /><span class="dim">Independent</span></span>
+              <span class="work-year mono">Design + Eng <span class="arrow">↗</span></span>
+            </a>
+          </li>
+          <li class="work-row">
+            <a href="./hunt.html" data-preview-key="hunt" data-cursor="View ↗">
+              <span class="work-num mono dim">04</span>
+              <span class="work-title">Hunt Dashboard</span>
+              <span class="work-kind mono">Live operations surface<br /><span class="dim">AWS Cal Poly DxHub</span></span>
+              <span class="work-year mono">Full-stack <span class="arrow">↗</span></span>
+            </a>
+          </li>
+        </ol>
+
+        <div class="preview" aria-hidden="true">
+          <div data-preview="sac"><!-- @include plate-sac --></div>
+          <div data-preview="wis"><!-- @include plate-wis --></div>
+          <div data-preview="urb"><img src="./img/urbane/radar.jpg" alt="" /></div>
+          <div data-preview="hunt"><!-- @include plate-hunt --></div>
+        </div>
+      </section>
+
+      <!-- ABOUT STRIP -->
+      <section class="section wrap about-strip" aria-labelledby="about-title">
+        <div class="section-head mono">
+          <span id="about-title">(About)</span>
+          <a href="./about.html" class="sig" data-scramble-host><span data-scramble>Full profile</span> ↗</a>
+        </div>
+        <div class="grid">
+          <figure class="about-portrait" data-dither-host>
+            <div class="frame crop"><canvas data-dither="./img/headshot.jpg" data-cols="160" role="img" aria-label="Portrait of Isaac Tsai"></canvas></div>
+            <figcaption class="mono dim"><span>Fig. 01 — I. Tsai</span><span>Bayer 8×8</span></figcaption>
+          </figure>
+          <div class="about-copy">
+            <p class="statement" data-scrub>
+              I’m Isaac — a computer science student at Cal Poly and a software engineer at the AWS Digital Transformation
+              Hub. I take public-sector problems from a whiteboard to a <mark>deployed, evaluated, handed-off</mark> system:
+              the retrieval, the infrastructure, the cost model and the interface that makes it all legible.
+            </p>
+            <table class="spec">
+              <tbody>
+                <tr data-reveal>
+                  <th class="mono dim">Building</th>
+                  <td>Agentic retrieval, knowledge graphs, LLM evaluation harnesses</td>
+                </tr>
+                <tr data-reveal>
+                  <th class="mono dim">Cloud</th>
+                  <td>AWS CDK, Bedrock, Lambda, Neptune, Aurora pgvector, Step Functions, GovCloud</td>
+                </tr>
+                <tr data-reveal>
+                  <th class="mono dim">Interface</th>
+                  <td>Next.js, React, TypeScript, Mapbox GL, streaming UIs</td>
+                </tr>
+                <tr data-reveal>
+                  <th class="mono dim">Principle</th>
+                  <td>No band-aid fixes. Write the decision down. Measure it with real data.</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <img
-            class="portrait"
-            src="./meonhills.jpg"
-            alt="Isaac Tsai overlooking a mountain landscape"
-          />
-          <p class="portrait-caption">Somewhere above the clouds</p>
-        </div>
-
-        <div class="hero-copy" id="home">
-          <p class="eyebrow">Portfolio · 2026</p>
-          <h1 id="hero-title">Isaac Tsai</h1>
-        </div>
-
-        <div class="hero-rule" aria-hidden="true"></div>
-
-        <div class="markers" aria-hidden="true">
-          <span class="marker marker-active"></span>
-          <span class="marker"></span>
-        </div>
-
-        <p class="side-note">Software Developer<br />Based in San Luis Obispo</p>
-
-        <span class="edition" aria-hidden="true">01</span>
-      </section>
-
-      <section class="work-section" id="main-content" aria-labelledby="work-title">
-        <div class="section-intro">
-          <p class="section-kicker">Selected work · 01–03</p>
-          <h2 id="work-title">Systems shaped around<br />real human needs.</h2>
-          <a class="text-link" href="./work.html">View all work <span>↗</span></a>
-        </div>
-
-        <div class="project-list">
-          <article class="project-row project-row-featured">
-            <a class="project-visual urbane-visual" href="./urbane.html">
-              <img
-                src="./assets/urbane/landing.jpg"
-                alt="Urbane Weather location search interface"
-                loading="lazy"
-              />
-              <span class="project-open" aria-hidden="true">View case study ↗</span>
-            </a>
-            <div class="project-summary">
-              <span class="project-number">01</span>
-              <p class="project-type">Independent · Product Engineering</p>
-              <h3><a href="./urbane.html">Urbane Weather</a></h3>
-              <p>
-                A granular weather experience pairing live NOAA radar with a
-                customizable, deliberately minimal dashboard.
-              </p>
-              <ul class="project-tags" aria-label="Technologies">
-                <li>Next.js</li>
-                <li>Mapbox GL</li>
-                <li>Chart.js</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="project-row project-row-reverse">
-            <a class="project-visual dor-visual" href="./wisconsin.html">
-              <span class="visual-label">Wisconsin<br />DOR</span>
-              <span class="visual-query">How is property assessed?</span>
-              <span class="visual-source">Wis. Stat. § 70.32</span>
-              <span class="project-open" aria-hidden="true">View case study ↗</span>
-            </a>
-            <div class="project-summary">
-              <span class="project-number">02</span>
-              <p class="project-type">AWS Cal Poly DxHub · AI Engineering</p>
-              <h3><a href="./wisconsin.html">Wisconsin DOR</a></h3>
-              <p>
-                An authority-aware property tax assistant that retrieves from a
-                legal knowledge graph and returns source-grounded answers.
-              </p>
-              <ul class="project-tags" aria-label="Technologies">
-                <li>Amazon Bedrock</li>
-                <li>Neptune</li>
-                <li>AWS CDK</li>
-              </ul>
-            </div>
-          </article>
-
-          <article class="project-row">
-            <a class="project-visual hunt-visual" href="./hunt.html">
-              <span class="map-route route-a"></span>
-              <span class="map-route route-b"></span>
-              <span class="map-point point-a"></span>
-              <span class="map-point point-b"></span>
-              <span class="map-point point-c"></span>
-              <span class="hunt-stat"><b>08</b> teams live</span>
-              <span class="project-open" aria-hidden="true">View case study ↗</span>
-            </a>
-            <div class="project-summary">
-              <span class="project-number">03</span>
-              <p class="project-type">AWS Cal Poly DxHub · Full-stack Engineering</p>
-              <h3><a href="./hunt.html">Hunt Admin Dashboard</a></h3>
-              <p>
-                A real-time operations surface for monitoring teams, progress,
-                checkpoint photos, and live location data during campus hunts.
-              </p>
-              <ul class="project-tags" aria-label="Technologies">
-                <li>React</li>
-                <li>Mapbox GL</li>
-                <li>DynamoDB</li>
-              </ul>
-            </div>
-          </article>
         </div>
       </section>
 
-      <a class="contact-cta" href="./contact.html">
-        <p class="section-kicker">Have a project in mind? · 04</p>
-        <h2>Let’s build with intention.</h2>
-        <span aria-hidden="true">↗</span>
-      </a>
+      <div class="marquee marquee--flat" data-dir="1" aria-hidden="true">
+        <div class="marquee-track">
+          <span class="marquee-item">Available for conversations</span>
+          <span class="marquee-item">Say hello</span>
+        </div>
+      </div>
     </main>
 
-    <footer class="site-footer">
-      <span>Isaac Tsai</span>
-      <span>San Luis Obispo, CA</span>
-      <span>© 2026</span>
-    </footer>
-
-    <script src="./script.js"></script>
+    <!-- @include footer -->
   </body>
 </html>

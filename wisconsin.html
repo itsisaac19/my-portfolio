@@ -1,157 +1,186 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Wisconsin DOR AI assistant case study by Isaac Tsai." />
-    <title>Wisconsin DOR | Isaac Tsai</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500&family=DM+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
+    <!-- @include head -->
+    <title>Wisconsin DOR GraphRAG — Isaac Tsai</title>
+    <meta
+      name="description"
+      content="An agentic GraphRAG assistant for Wisconsin Department of Revenue assessors: a nine-level legal authority graph, a Claude research loop, and citations that resolve."
     />
-    <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="inner-page">
-    <a class="skip-link" href="#case-content">Skip to content</a>
-    <header class="site-header">
-      <a class="monogram" href="./index.html" aria-label="Isaac Tsai, home">IT</a>
-      <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="site-nav">
-        <span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a href="./index.html">Home</a>
-        <a class="active" href="./work.html">Works</a>
-        <a href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
-      </nav>
-    </header>
+  <body>
+    <!-- @include chrome -->
 
-    <main>
-      <section class="case-hero" aria-labelledby="case-title">
-        <p class="page-label">Case study · 02</p>
-        <h1 class="case-title" id="case-title">Wisconsin DOR</h1>
-        <p class="case-subtitle">
-          A source-grounded property tax assistant that makes a dense legal and
-          policy corpus easier to navigate.
-        </p>
-        <dl class="case-meta">
-          <div><dt>Role</dt><dd>Software Engineering Intern</dd></div>
-          <div><dt>Context</dt><dd>AWS Cal Poly DxHub</dd></div>
-          <div><dt>Stack</dt><dd>Bedrock, Neptune, Lambda, Next.js</dd></div>
-          <div><dt>Source</dt><dd><a href="https://github.com/cal-poly-dxhub/wisconsin-dor-polished" target="_blank" rel="noreferrer">Open-source repository ↗</a></dd></div>
-        </dl>
+    <main id="main">
+      <section class="cs-hero" aria-labelledby="cs-title">
+        <div class="cs-crumb mono">
+          <a href="./index.html#work" class="dim">← Index</a>
+          <span>Case 02 / 04</span>
+          <span class="dim">Piloted · handed off</span>
+        </div>
+        <h1 class="display cs-title" id="cs-title" data-split>Wisconsin<br />DOR <span class="sig">§</span></h1>
+        <div class="grid cs-sub">
+          <p class="lede" data-reveal>
+            A GraphRAG research assistant for property-tax assessors. It walks a nine-level legal authority graph, decides
+            whether it has enough evidence, then streams an answer in which every citation resolves to a real source.
+          </p>
+          <dl class="cs-meta mono" data-reveal style="--d: 0.1s">
+            <div><dt class="dim">Role</dt><dd>SWE intern — retrieval, evals, ingestion, infra</dd></div>
+            <div><dt class="dim">Client</dt><dd>Wisconsin Department of Revenue</dd></div>
+            <div><dt class="dim">Timeline</dt><dd>Apr — Oct 2026</dd></div>
+            <div><dt class="dim">Context</dt><dd>AWS Cal Poly DxHub</dd></div>
+            <div><dt class="dim">Stack</dt><dd>Bedrock (Claude) · Neptune Analytics · Lambda · Fargate · Next.js · CDK</dd></div>
+            <div>
+              <dt class="dim">Source</dt>
+              <dd><a href="https://github.com/cal-poly-dxhub/wisconsin-dor-polished" target="_blank" rel="noopener">GitHub ↗</a></dd>
+            </div>
+          </dl>
+        </div>
+        <div class="cs-plate crop" data-unclip>
+          <div data-parallax="0.06" style="height: 100%"><!-- @include plate-wis --></div>
+        </div>
       </section>
 
-      <div class="case-cover">
-        <div class="project-visual dor-visual">
-          <span class="visual-label">Wisconsin<br />DOR</span>
-          <span class="visual-query">How is property assessed?</span>
-          <span class="visual-source">Wis. Stat. § 70.32</span>
-        </div>
-      </div>
-
-      <div class="case-body" id="case-content">
-        <section class="case-section">
-          <h2>The challenge</h2>
-          <div class="case-prose">
-            <p>
-              Wisconsin property tax guidance spans statutes, administrative
-              rules, case law, assessment manuals, government publications, and
-              professional standards. The hard part is not generating an
-              answer. It is finding the right authority, preserving legal
-              context, and showing exactly where the answer came from.
-            </p>
-            <p>
-              The prototype lets users ask natural-language questions and
-              receive streamed answers grounded in public, directly linked
-              sources.
-            </p>
-          </div>
-        </section>
-
-        <blockquote class="case-quote">
-          Retrieval quality is a product feature, not a backend detail.
-        </blockquote>
-
-        <section class="case-section">
-          <h2>My contribution</h2>
-          <div class="case-prose">
-            <p>
-              As an engineer on the DxHub team, I worked across the retrieval
-              system, ingestion pipeline, cloud infrastructure, and end-user
-              experience. My contribution centered on making the system’s
-              evidence more accurate, observable, and useful.
-            </p>
-            <ul>
-              <li>Developed authority-aware GraphRAG retrieval and structural document browsing.</li>
-              <li>Built source-linked citation cards and page-level citation navigation.</li>
-              <li>Improved statute, administrative rule, and WPAM chunking quality.</li>
-              <li>Added retrieval traces and an admin activity surface for evaluation.</li>
-              <li>Consolidated the ingestion workflow into managed Fargate phases.</li>
-            </ul>
-          </div>
-        </section>
-
-        <section class="case-section">
-          <h2>System design</h2>
-          <div class="case-prose">
-            <p>
-              An authenticated question becomes an EventBridge event. A Lambda
-              then runs a Claude tool-use loop across FAQ search and Neptune
-              graph tools. The agent can perform vector search, traverse legal
-              relationships, inspect document structure, and determine when it
-              has enough evidence before streaming an answer and its sources
-              over WebSocket.
-            </p>
-            <div class="architecture" aria-label="Wisconsin DOR query flow">
-              <span>Next.js + Cognito</span>
-              <span>EventBridge + Lambda</span>
-              <span>Claude tool loop</span>
-              <span>Neptune knowledge graph</span>
+      <section class="chapter" aria-labelledby="c1">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">01</span><span id="c1">The problem</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Generating an answer is easy. Finding the right authority is the hard part.</h2>
+            <div class="body" data-reveal>
+              <p>
+                Wisconsin property-tax guidance is spread across the Constitution, statutes, case law, administrative
+                rules, the assessment manual (WPAM), FAQs, government publications and professional standards. A flat
+                vector index loses that structure: it can’t tell a statute from a FAQ that paraphrases it.
+              </p>
+              <p>
+                The DOR wanted assessment staff to ask questions in plain English and get answers grounded in the
+                <strong>right level of authority</strong>, with every source a click away.
+              </p>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="case-section">
-          <h2>Authority as data</h2>
-          <div class="case-prose">
-            <p>
-              The knowledge graph models a nine-level authority hierarchy, from
-              constitutional and statutory sources through case law,
-              administrative rules, manuals, FAQs, and standards. Relationships
-              such as <em>cites</em>, <em>implements</em>,
-              <em>supersedes</em>, and <em>conflicts with</em> help retrieval
-              preserve context that a flat vector index would lose.
-            </p>
+      <section class="section wrap" aria-label="Scale">
+        <div class="stats" style="margin-top: 0">
+          <div class="stat" data-reveal><b data-count="2015">2,015</b><span class="mono dim">Documents in the graph</span></div>
+          <div class="stat" data-reveal style="--d: 0.08s"><b data-count="42" data-suffix="K">42K</b><span class="mono dim">Embedded chunks</span></div>
+          <div class="stat" data-reveal style="--d: 0.16s"><b data-count="1039">1,039</b><span class="mono dim">Pilot queries · 38 users</span></div>
+          <div class="stat" data-reveal style="--d: 0.24s"><b data-count="424">424</b><span class="mono dim">My commits · ~60% of repo</span></div>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="c2" style="padding-top: 0">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">02</span><span id="c2">System</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Research first, then write.</h2>
+            <div class="body" data-reveal>
+              <p>
+                An authenticated question becomes an EventBridge event. In <strong>Phase A</strong>, Claude Sonnet runs a
+                14-tool research loop over Neptune Analytics, combining vector search with traversal of
+                <em>cites</em>, <em>implements</em> and <em>supersedes</em> edges across the authority hierarchy. A Haiku
+                adequacy judge then decides whether to answer, ask a clarifying question (with suggestion chips) or
+                decline. In <strong>Phase B</strong>, the answer streams over WebSocket while citations are repaired and
+                any invented URLs are stripped.
+              </p>
+            </div>
+            <ol class="pipeline" style="--steps: 4" data-reveal>
+              <li><span class="mono dim">01 — Ask</span><b>Next.js · Cognito · EventBridge</b></li>
+              <li><span class="mono dim">02 — Research</span><b>Sonnet tool loop over the authority graph</b></li>
+              <li><span class="mono dim">03 — Judge</span><b>Haiku: answer / clarify / decline</b></li>
+              <li><span class="mono dim">04 — Stream</span><b>WebSocket answer with grounded citations</b></li>
+            </ol>
+            <div class="chips mono" data-reveal>
+              <span>Constitution</span><span>Statutes</span><span>Case law</span><span>Admin rules</span><span>WPAM</span
+              ><span>FAQs</span><span>Gov pubs</span><span>IAAO</span><span>USPAP</span>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section class="case-section">
-          <h2>Result</h2>
-          <div class="case-prose">
-            <p>
-              The resulting open-source prototype connects a conversational
-              interface to an inspectable evidence trail. Users can follow
-              citations to public sources, while the team can investigate
-              retrieval behavior, feedback, and document quality without
-              treating the model as a black box.
-            </p>
+      <section class="pull" aria-label="Design principle">
+        <blockquote data-split>Retrieval quality is a <span class="sig">product feature.</span></blockquote>
+      </section>
+
+      <section class="chapter" aria-labelledby="c3" style="padding-top: 0">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">03</span><span id="c3">My part</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>I led the move from a legacy vector search to GraphRAG, then took it to production.</h2>
+            <ol class="ledger" data-reveal>
+              <li>
+                <div>
+                  <strong>Grounding that can’t be faked.</strong>
+                  <span>
+                    If the answer cites a statute section that was never retrieved, the system fetches it. Citations are
+                    repaired before they stream, and invented URLs never reach the user.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>An eval system with teeth.</strong>
+                  <span>
+                    A graph-regression harness graded by an LLM judge against testers’ real complaints, plus a Phase-B
+                    replay that cut a full baseline run from about $10 and 28 minutes to about $1.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Closing the feedback loop.</strong>
+                  <span>
+                    Testers left 73 rated answers, 28 of them mixed or negative. I traced each one to its root cause using
+                    the stored retrieval traces and shipped the fixes.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Ingestion that understands legal documents.</strong>
+                  <span>
+                    Dedicated chunkers for admin rules, WPAM and case law, statute aliases and subsection splitting,
+                    docket-keyed case-law dedup, and a ten-phase graph load on ECS Fargate.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>A real handoff.</strong>
+                  <span>
+                    Rebuilt the cost model from the actual bill, which showed the earlier estimate was 2–3× too high. Also
+                    added blue/green Neptune graph swaps and a post-audit security pass: TLS-only buckets, scoped IAM,
+                    cdk-nag and cost alarms.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>An admin trace replay.</strong>
+                  <span>
+                    An activity dashboard that replays each stored retrieval trace with a pane per tool, so the team can
+                    see why an answer happened instead of guessing.
+                  </span>
+                </div>
+              </li>
+            </ol>
+            <div class="stats">
+              <div class="stat"><b data-count="180">180</b><span class="mono dim">Dependency CVEs before</span></div>
+              <div class="stat"><b data-count="2">2</b><span class="mono dim">After · dev-only</span></div>
+              <div class="stat"><b data-count="14">14</b><span class="mono dim">Retrieval tools</span></div>
+              <div class="stat"><b data-count="9">9</b><span class="mono dim">Authority levels</span></div>
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <a class="next-project" href="./hunt.html">
-        <div><p class="section-kicker">Next project · 03</p><h2>Hunt Dashboard</h2></div>
-        <span aria-hidden="true">↗</span>
-      </a>
-      <a class="contact-cta" href="./contact.html">
-        <p class="section-kicker">Have a project in mind?</p>
-        <h2>Let’s build with intention.</h2>
-        <span aria-hidden="true">↗</span>
+      <a class="next" href="./urbane.html" data-cursor="Next ↗">
+        <span class="next-row mono"><span class="dim">Next case — 03</span><span>↗</span></span>
+        <span class="next-title">Urbane Weather</span>
       </a>
     </main>
-    <script src="./script.js"></script>
+
+    <!-- @include footer -->
   </body>
 </html>

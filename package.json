@@ -1,0 +1,19 @@
+{
+  "name": "isaac-tsai",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "animejs": "^4.5.0",
+    "lenis": "^1.3.27"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "typescript": "^5.9.0",
+    "vite": "^7.1.0"
+  }
+}

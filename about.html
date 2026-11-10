@@ -1,120 +1,160 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- @include head -->
+    <title>About — Isaac Tsai</title>
     <meta
       name="description"
-      content="About Isaac Tsai, a software developer based in San Luis Obispo."
+      content="About Isaac Tsai: Cal Poly computer science student and software engineer at the AWS Digital Transformation Hub, building agentic AI systems for the public sector."
     />
-    <title>About | Isaac Tsai</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@500&family=DM+Sans:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
   </head>
-  <body class="inner-page">
-    <a class="skip-link" href="#about-content">Skip to content</a>
-    <header class="site-header">
-      <a class="monogram" href="./index.html" aria-label="Isaac Tsai, home">IT</a>
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Open navigation"
-        aria-expanded="false"
-        aria-controls="site-nav"
-      >
-        <span></span><span></span>
-      </button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
-        <a href="./index.html">Home</a>
-        <a href="./work.html">Works</a>
-        <a class="active" href="./about.html">About</a>
-        <a href="./contact.html">Contact</a>
-      </nav>
-    </header>
+  <body>
+    <!-- @include chrome -->
 
-    <main>
-      <section class="about-page-hero" aria-labelledby="about-title">
-        <p class="page-label">About · 01</p>
-        <h1 class="page-heading" id="about-title">
-          Thoughtful software for complex, real-world problems.
-        </h1>
-        <div class="about-page-intro">
-          <p>
-            I’m Isaac, a software developer and Computer Science student at Cal
-            Poly in San Luis Obispo.
+    <main id="main">
+      <section class="about-hero" aria-labelledby="about-h">
+        <div class="cs-crumb mono">
+          <span class="dim">(About)</span>
+          <span>Isaac Tsai</span>
+          <span class="dim" data-clock>--:--:-- PT</span>
+        </div>
+        <h1 class="display" id="about-h" data-split>Learn it.<br />Build it.<br /><span class="sig">Write it down.</span></h1>
+        <div class="grid cs-sub">
+          <p class="lede" data-reveal>
+            I’m a computer science student at Cal Poly, San Luis Obispo, and a software engineer at the AWS Cal Poly
+            Digital Transformation Hub.
           </p>
-          <p>
-            I work across product design, full-stack systems, AI retrieval, and
-            data-rich interfaces. I care about the decisions beneath the
-            interface as much as the interface itself.
-          </p>
+          <div class="body" data-reveal style="grid-column: 8 / -1; --d: 0.1s">
+            <p>
+              At DxHub I turn public-sector problems into focused cloud prototypes: a property-tax research assistant for
+              the State of Wisconsin, and a case-scoped evidence assistant for the Sacramento County District Attorney.
+            </p>
+            <p>
+              I care as much about the decisions beneath the interface as the interface itself. That means the retrieval,
+              the infrastructure, the cost model, the eval set, and the doc that explains why it all works.
+            </p>
+          </div>
         </div>
       </section>
 
-      <figure class="about-image">
-        <img
-          src="./meonhills.jpg"
-          alt="Isaac Tsai overlooking a mountain landscape"
-        />
-        <figcaption>Somewhere above the clouds</figcaption>
-      </figure>
+      <section class="section wrap" aria-label="Photograph">
+        <figure class="crop" style="margin: 0" data-unclip>
+          <div style="aspect-ratio: 16 / 7; overflow: hidden">
+            <img
+              data-parallax="0.1"
+              src="./img/meonhills.jpg"
+              alt="Isaac Tsai standing above a mountain landscape"
+              style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.2) brightness(0.9)"
+            />
+          </div>
+        </figure>
+        <p class="mono dim" style="display: flex; justify-content: space-between; margin-top: 10px">
+          <span>Fig. 04 — Somewhere above the clouds</span><span class="sig">■ Off the clock</span>
+        </p>
+      </section>
 
-      <section class="about-page-body" id="about-content">
-        <div class="about-statement">
-          <p class="section-kicker">What I do · 02</p>
-          <p class="statement-copy">
-            At the AWS Cal Poly Digital Transformation Hub, I help turn
-            public-sector challenges into focused, testable cloud prototypes.
-            The work asks for technical depth, product judgment, and the
-            humility to understand a problem before reaching for a solution.
-          </p>
+      <section class="section wrap" aria-labelledby="how" style="padding-top: 0">
+        <div class="section-head mono">
+          <span id="how">(How I work)</span>
+          <span class="dim">06 principles</span>
         </div>
-
-        <div class="about-details">
-          <p class="section-kicker">Capabilities · 03</p>
-          <dl class="capability-list">
+        <div class="cap-grid">
+          <article class="cap" data-reveal>
+            <span class="mono dim">P—01</span>
             <div>
-              <dt>01</dt>
-              <dd>
-                <strong>Product engineering</strong>
-                <span>From problem framing and interface design through implementation.</span>
-              </dd>
+              <h3>Understand before building</h3>
+              <p>I want to know how a system works well enough to draw it on a whiteboard before I trust it.</p>
             </div>
+          </article>
+          <article class="cap" data-reveal style="--d: 0.06s">
+            <span class="mono dim">P—02</span>
             <div>
-              <dt>02</dt>
-              <dd>
-                <strong>Cloud and AI systems</strong>
-                <span>AWS infrastructure, retrieval systems, and data pipelines.</span>
-              </dd>
+              <h3>No band-aids</h3>
+              <p>Fix the root cause. Never special-case one piece of data just to make a single test pass.</p>
             </div>
+          </article>
+          <article class="cap" data-reveal style="--d: 0.12s">
+            <span class="mono dim">P—03</span>
             <div>
-              <dt>03</dt>
-              <dd>
-                <strong>Interaction design</strong>
-                <span>Clear interfaces for complex, live, and information-rich products.</span>
-              </dd>
+              <h3>Decisions on paper</h3>
+              <p>ADRs, design docs and API specs, so the next engineer gets the reasoning along with the code.</p>
             </div>
-          </dl>
+          </article>
+          <article class="cap" data-reveal>
+            <span class="mono dim">P—04</span>
+            <div>
+              <h3>Measure with real data</h3>
+              <p>Cost models from the actual bill. Evals graded against what testers actually complained about.</p>
+            </div>
+          </article>
+          <article class="cap" data-reveal style="--d: 0.06s">
+            <span class="mono dim">P—05</span>
+            <div>
+              <h3>Careful with production</h3>
+              <p>Deploy after hours, ask before expensive runs, and treat client systems like someone else’s house.</p>
+            </div>
+          </article>
+          <article class="cap" data-reveal style="--d: 0.12s">
+            <span class="mono dim">P—06</span>
+            <div>
+              <h3>Above and beyond, early</h3>
+              <p>Scope ambitiously from day one, then protect the team’s time while doing it.</p>
+            </div>
+          </article>
         </div>
       </section>
 
-      <a class="contact-cta" href="./contact.html">
-        <p class="section-kicker">Get in touch · 04</p>
-        <h2>Let’s build with intention.</h2>
-        <span aria-hidden="true">↗</span>
-      </a>
+      <section class="section wrap" aria-labelledby="record" style="padding-top: 0">
+        <div class="section-head mono">
+          <span id="record">(Record)</span>
+          <span class="dim">Selected</span>
+        </div>
+        <ol class="timeline">
+          <li data-reveal>
+            <span class="when mono sig">Nov 2026 —</span>
+            <a class="what" href="./sac-county.html">Sac County DA Case Chat ↗</a>
+            <span class="where">AWS Cal Poly DxHub. GovCloud agentic RAG and evidence timeline for prosecutors.</span>
+          </li>
+          <li data-reveal>
+            <span class="when mono">Apr — Oct 2026</span>
+            <a class="what" href="./wisconsin.html">Wisconsin DOR GraphRAG ↗</a>
+            <span class="where">AWS Cal Poly DxHub. Authority-aware legal retrieval, evals, ingestion and production handoff.</span>
+          </li>
+          <li data-reveal>
+            <span class="when mono">DxHub</span>
+            <a class="what" href="./hunt.html">Hunt Admin Dashboard ↗</a>
+            <span class="where">Real-time operations surface for a campus-wide event.</span>
+          </li>
+          <li data-reveal>
+            <span class="when mono">Independent</span>
+            <a class="what" href="./urbane.html">Urbane Weather ↗</a>
+            <span class="where">Product design and engineering. Animated NOAA radar and a customizable dashboard.</span>
+          </li>
+          <li data-reveal>
+            <span class="when mono">Ongoing</span>
+            <span class="what">Cal Poly, San Luis Obispo</span>
+            <span class="where">B.S. Computer Science.</span>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section wrap" aria-labelledby="kit" style="padding-top: 0">
+        <div class="section-head mono">
+          <span id="kit">(Toolkit)</span>
+          <span class="dim">Daily drivers</span>
+        </div>
+        <table class="spec">
+          <tbody>
+            <tr data-reveal><th class="mono dim">AI / Retrieval</th><td>Amazon Bedrock (Claude, Nova, Titan), agentic tool loops, GraphRAG, pgvector, LLM-as-judge evals</td></tr>
+            <tr data-reveal><th class="mono dim">Cloud</th><td>AWS CDK (TS + Python), Lambda, Step Functions, EventBridge, Neptune Analytics, Aurora Serverless v2, DynamoDB, ECS Fargate, GovCloud</td></tr>
+            <tr data-reveal><th class="mono dim">Languages</th><td>TypeScript, Python, SQL</td></tr>
+            <tr data-reveal><th class="mono dim">Interface</th><td>Next.js, React, Vite, Mapbox GL, Chart.js, WebSocket streaming</td></tr>
+            <tr data-reveal><th class="mono dim">Practice</th><td>ADRs, diagrams as code, security audits, cost modeling, agent-assisted development</td></tr>
+          </tbody>
+        </table>
+      </section>
     </main>
 
-    <footer class="site-footer">
-      <span>Isaac Tsai</span>
-      <span>San Luis Obispo, CA</span>
-      <span>© 2026</span>
-    </footer>
-    <script src="./script.js"></script>
+    <!-- @include footer -->
   </body>
 </html>

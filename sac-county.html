@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- @include head -->
+    <title>Sac County DA Case Chat — Isaac Tsai</title>
+    <meta
+      name="description"
+      content="A case-scoped, citation-first AI assistant and evidence timeline for the Sacramento County District Attorney, built entirely in AWS GovCloud."
+    />
+  </head>
+  <body>
+    <!-- @include chrome -->
+
+    <main id="main">
+      <section class="cs-hero" aria-labelledby="cs-title">
+        <div class="cs-crumb mono">
+          <a href="./index.html#work" class="dim">← Index</a>
+          <span>Case 01 / 04</span>
+          <span class="sig">● In progress</span>
+        </div>
+        <h1 class="display cs-title" id="cs-title" data-split>Sac County<br /><span class="sig">DA</span> Case Chat</h1>
+        <div class="grid cs-sub">
+          <p class="lede" data-reveal>
+            A case-scoped assistant for prosecutors. It answers only from one case’s evidence, cites every claim, and lays
+            sources side by side on a timeline — entirely inside AWS GovCloud.
+          </p>
+          <dl class="cs-meta mono" data-reveal style="--d: 0.1s">
+            <div><dt class="dim">Role</dt><dd>SWE intern — architecture, infra, retrieval</dd></div>
+            <div><dt class="dim">Client</dt><dd>Sacramento County District Attorney</dd></div>
+            <div><dt class="dim">Timeline</dt><dd>Nov 2026 — demo build</dd></div>
+            <div><dt class="dim">Context</dt><dd>AWS Cal Poly DxHub</dd></div>
+            <div><dt class="dim">Stack</dt><dd>FastAPI · React · CDK (Py) · Aurora pgvector · Bedrock Nova · Textract</dd></div>
+            <div>
+              <dt class="dim">Source</dt>
+              <dd><a href="https://github.com/cal-poly-dxhub/sacremento-county-da-case-chat" target="_blank" rel="noopener">GitHub ↗</a></dd>
+            </div>
+          </dl>
+        </div>
+        <div class="cs-plate crop" data-unclip>
+          <div data-parallax="0.06" style="height: 100%"><!-- @include plate-sac --></div>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="c1">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">01</span><span id="c1">The problem</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Trust is the whole product.</h2>
+            <div class="body" data-reveal>
+              <p>
+                Prosecutors need fast, accurate answers about a single case: who said what, when, and where it’s written
+                down. Anything an AI says has to be traceable to a page in that case’s file, or it’s worse than useless.
+              </p>
+              <p>
+                The constraints were hard ones. Source documents can’t be copied out of the county’s case-management
+                storage, everything has to run in <strong>AWS GovCloud</strong>, and the assistant must stay within the
+                office’s ethics line on AI: it finds, quotes and cites. It never recommends.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pull" aria-label="Design principle">
+        <blockquote data-split>Find. Quote. Cite. <span class="sig">Never recommend.</span></blockquote>
+      </section>
+
+      <section class="chapter" aria-labelledby="c2">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">02</span><span id="c2">System</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>From change feed to cited answer, without leaving GovCloud.</h2>
+            <div class="body" data-reveal>
+              <p>
+                A change feed from the case-management system, plus an “index now” action and a reconcile when a case is
+                opened, kicks off a Step Functions ingest of six Lambda stages: OCR, chunking, embeddings and entity
+                extraction. Everything lands in a graph-shaped Postgres schema. At question time, a Bedrock agent works
+                over tools scoped to that case and streams a cited answer over WebSocket. Every model and tool call records
+                its tokens, cost and latency.
+              </p>
+            </div>
+            <ol class="pipeline" style="--steps: 4" data-reveal>
+              <li><span class="mono dim">A — Trigger</span><b>Change feed + reconcile-on-open</b></li>
+              <li><span class="mono dim">B — Ingest</span><b>Step Functions · Textract OCR · Titan embeddings</b></li>
+              <li><span class="mono dim">C — Store</span><b>Aurora Serverless v2 + pgvector graph</b></li>
+              <li><span class="mono dim">D — Answer</span><b>Nova agent → WebSocket stream with citations</b></li>
+            </ol>
+            <div class="chips mono" data-reveal>
+              <span>VPC · no NAT</span><span>Private endpoints</span><span>6 DynamoDB tables</span><span>SSM-only bastion</span
+              ><span>Python 3.13 · arm64</span><span>Model data retention: none</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="c3">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">03</span><span id="c3">Decisions</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Seven ADRs. Each one closes off a way the system could fail.</h2>
+            <ol class="ledger" data-reveal>
+              <li>
+                <div>
+                  <strong>Index by content, not by case.</strong>
+                  <span>
+                    Documents are keyed by content hash in a many-to-many index, with case membership owned upstream and
+                    applied at query time. Re-linking a file never triggers reprocessing, and duplicates are processed once.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Replace S3 triggers with a change feed.</strong>
+                  <span>
+                    Upstream deletes turned out to be soft and object metadata is frozen at upload, so bucket events would
+                    have lied. A change feed plus reconcile-on-open keeps the index honest.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Postgres as the graph.</strong>
+                  <span>
+                    Compared Neptune, Neptune Analytics, Bedrock KB GraphRAG and Aurora pgvector against what GovCloud
+                    actually offers. Chose a graph-shaped schema (chunks, entities, mentions and relations, with every edge
+                    citable) behind a <code>GraphStore</code> interface.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Events are claims, not facts.</strong>
+                  <span>
+                    Timeline entries carry a time range, a confidence and the source they came from, so contradictory
+                    accounts show up side by side instead of being averaged away.
+                  </span>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <strong>Ship while access is pending.</strong>
+                  <span>
+                    Turned model data retention off on all 20 GovCloud models, and kept development moving on Nova and
+                    open models while access to Claude was still being approved.
+                  </span>
+                </div>
+              </li>
+            </ol>
+            <div class="stats">
+              <div class="stat"><b data-count="7">7</b><span class="mono dim">Decision records</span></div>
+              <div class="stat"><b data-count="6">6</b><span class="mono dim">Ingest stages</span></div>
+              <div class="stat"><b data-count="59" data-suffix="%">59%</b><span class="mono dim">Of repo commits</span></div>
+              <div class="stat"><b>0</b><span class="mono dim">ACU at idle · scales to zero</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="c4">
+        <div class="grid">
+          <div class="chapter-label mono"><span class="n">04</span><span id="c4">My part</span></div>
+          <div class="chapter-body">
+            <h2 class="h3" data-split>Architecture to interface in one sprint.</h2>
+            <div class="body" data-reveal>
+              <p>
+                I wrote the architecture and design doc, every decision record, a proposed integration API spec and the
+                eval set. I then built the CDK infrastructure, the agentic retrieval, the Postgres graph store and the
+                ingestion handlers. On the front end I built the visual evidence timeline and a simulated launch from the
+                case-management screen for the chief’s demo.
+              </p>
+              <p>
+                I also scoped the work for a teammate through GitHub issues and milestones, then rebalanced the split once
+                it was clear they could take on more.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <a class="next" href="./wisconsin.html" data-cursor="Next ↗">
+        <span class="next-row mono"><span class="dim">Next case — 02</span><span>↗</span></span>
+        <span class="next-title">Wisconsin DOR</span>
+      </a>
+    </main>
+
+    <!-- @include footer -->
+  </body>
+</html>
